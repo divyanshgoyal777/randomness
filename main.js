@@ -3,7 +3,8 @@
 // const sketch = require("./random_point_in_rectangle");
 // const sketch = require("./random_point_in_any_rectangle");
 // const sketch = require("./random_point_inside_a_circle");
-const sketch = require("./random_point_inside_a_translated_circle");
+// const sketch = require("./random_point_inside_a_translated_circle");
+const sketch = require("./random_point_inside_a_parallelogram")
 
 
 function loop(world) {

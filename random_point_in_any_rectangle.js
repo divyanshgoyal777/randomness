@@ -4,20 +4,24 @@ function running() {
     return !r.WindowShouldClose();
 }
 
+function generateRandom(width, height, x, y) {
+    const randomX = Math.random() * width + x;
+    const randomY = Math.random() * height + y;
+    return { x: randomX, y: randomY }
+}
+
 function createRandomPoints(rec) {
     const points = [];
 
     for (let i = 0; i < 300; i++) {
-        const randomX = Math.random() * rec.width + rec.x;
-        const randomY = Math.random() * rec.height + rec.y;
-        points.push({ randomX, randomY });
+        const randomPoints = generateRandom(rec.width, rec.height, rec.x, rec.y)
+        points.push({ x: randomPoints.x, y: randomPoints.y });
     }
 
     return points;
 }
 
 function setup() {
-
     const world = {
         height: 800,
         width: 800,
@@ -38,7 +42,21 @@ function setup() {
     return world;
 }
 
-function update(world) {
+function update(world) { }
+
+function getWhiteColor() {
+    return {
+        r: 255,
+        g: 255,
+        b: 255,
+        a: 150,
+    };
+}
+
+function drawPoints(points) {
+    for (const point of points) {
+        r.DrawCircle(point.x, point.y, 15, getWhiteColor());
+    }
 }
 
 function draw(world) {
@@ -46,17 +64,7 @@ function draw(world) {
     r.ClearBackground(r.BLUE);
 
     r.DrawRectangleLinesEx(world.rec, 5, r.BLACK);
-
-    const WHITE = {
-        r: 255,
-        g: 255,
-        b: 255,
-        a: 150,
-    }
-
-    for (const points of world.randomPoints) {
-        r.DrawCircle(points.randomX, points.randomY, 15, WHITE);
-    }
+    drawPoints(world.randomPoints);
 
     r.EndDrawing();
 }

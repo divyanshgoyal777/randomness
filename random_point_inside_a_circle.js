@@ -4,6 +4,10 @@ function running() {
     return !r.WindowShouldClose();
 }
 
+function generateRandom(x) {
+    return Math.sqrt(Math.random()) * x;
+}
+
 function convertToRadians(degree) {
     return degree * Math.PI / 180;
 }
@@ -13,19 +17,18 @@ function createRandomPoints(world) {
 
     for (let i = 0; i < 800; i++) {
 
-        const r = Math.sqrt(Math.random()) * world.circleRadius;
+        const r = generateRandom(world.circleRadius);
         const angle = convertToRadians(Math.random() * 360);
         const randomX = r * Math.cos(angle) + world.circleX;
         const randomY = r * Math.sin(angle) + world.circleY;
 
-        points.push({ randomX, randomY });
+        points.push({ x: randomX, y: randomY });
     }
 
     return points;
 }
 
 function setup() {
-
     const world = {
         height: 800,
         width: 800,
@@ -43,7 +46,21 @@ function setup() {
     return world;
 }
 
-function update(world) {
+function update(world) { }
+
+function getYellowColor() {
+    return {
+        r: 253,
+        g: 249,
+        b: 0,
+        a: 200,
+    };
+}
+
+function drawPoints(points) {
+    for (const point of points) {
+        r.DrawCircle(point.x, point.y, 15, getYellowColor());
+    }
 }
 
 function draw(world) {
@@ -51,17 +68,7 @@ function draw(world) {
     r.ClearBackground(r.BLUE);
 
     r.DrawCircleLines(world.circleX, world.circleY, world.circleRadius, r.WHITE);
-
-    const YELLOW = {
-        r: 253,
-        g: 249,
-        b: 0,
-        a: 200,
-    }
-
-    for (const points of world.randomPoints) {
-        r.DrawCircle(points.randomX, points.randomY, 7, YELLOW);
-    }
+    drawPoints(world.randomPoints)
 
     r.EndDrawing();
 }

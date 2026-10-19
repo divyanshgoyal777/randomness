@@ -10,16 +10,18 @@ function setup() {
     r.SetTargetFPS(60);
 }
 
-function update(world) {
+function update(world) { }
+
+function generateRandom(x1, x2) {
+    return Math.random() * (x2 - x1) + x1;
 }
 
 function createRandomLines(x1, x2) {
     for (let i = 0; i < 50; i++) {
-        const randomX = (Math.random() * (x2 - x1)) + x1;
+        const randomX = generateRandom(x1, x2);
         r.DrawLineEx({ x: randomX, y: 0 }, { x: randomX, y: 800 }, 2, r.WHITE);
     }
 }
-
 
 function draw(world) {
     r.BeginDrawing();
