@@ -36,7 +36,7 @@ function generateRandom(max) {
 function createRandomPoints(world) {
     const points = [];
 
-    for (let i = 0; i < 800; i++) {
+    for (let i = 0; i < 100; i++) {
         const x = generateRandom(world.width);
         const y = Math.random() * world.height;
 
@@ -44,6 +44,12 @@ function createRandomPoints(world) {
     }
 
     return points;
+}
+
+function drawLine(world) {
+    for (let i = 0; i < world.randomPoints.length; i++) {
+        r.DrawLine(world.randomPoints[i].x, 0, world.randomPoints[i].x, world.height, r.WHITE);
+    }
 }
 
 function setup() {
@@ -78,7 +84,8 @@ function draw(world) {
     r.BeginDrawing();
     r.ClearBackground(r.BLUE);
 
-    drawPoints(world.randomPoints);
+    // drawPoints(world.randomPoints);
+    drawLine(world)
 
     r.EndDrawing();
 }
