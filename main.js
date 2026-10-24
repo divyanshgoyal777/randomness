@@ -6,7 +6,8 @@
 // const sketch = require("./06random_point_inside_a_translated_circle");
 // const sketch = require("./07random_point_inside_a_parallelogram")
 // const sketch = require("./08_not_all_randomness_looks_the_same")
-const sketch = require("./09_a_more_interesting_distribution");
+// const sketch = require("./09_a_more_interesting_distribution");
+const sketch = require("./10_estimating_with_randomness");
 
 function loop(world) {
     while (sketch.running()) {
